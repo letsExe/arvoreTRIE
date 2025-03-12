@@ -20,9 +20,8 @@ noRway criar_no(){
     aux->valor = -1;
     for(int i = 0; i < ALFABETO; i++){
         aux->filho[i] = NULL;
-
-    return aux;
     }
+    return aux;
 }
 
 arvoreRway *criar_arvore(){
@@ -35,10 +34,10 @@ void inserir(arvoreRway* arv, char* str, int valor){
     noRway aux = arv->raiz;
 
     while(*str){
-        if(aux == NULL){
+        if(aux == NULL){ // raiz eh nula
             aux = criar_no();
             aux->filho[*str - letraA] = criar_no();
-            arv->raiz = aux;
+            arv->raiz = aux; // raiz aponta para o no criado
         }
         else {
             if(aux->filho[*str - letraA] == NULL){
@@ -49,4 +48,21 @@ void inserir(arvoreRway* arv, char* str, int valor){
         }
     }
     aux->valor = valor;
+}
+
+int busca(arvoreRway* arv, char *str){
+    noRway aux = arv->raiz;
+
+    while(*str){
+        if(aux == NULL) return -1;
+
+        aux = aux->filho[*str - letraA];
+        str++;
+    }
+
+    if(aux != NULL){
+        return aux->valor;
+    }
+    
+    return -1;
 }
