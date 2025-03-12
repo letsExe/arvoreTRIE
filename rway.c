@@ -101,5 +101,8 @@ int main(){
     inserir(arv, "DAHYUN", 7);
     inserir(arv, "CHAEYOUNG", 29);
     inserir(arv, "TZUYU", 25);
-    imprime_dicionario(arv);
+
+    //imprime_dicionario(arv);
+
+    printf("valor da string TWICE eh %d\n", busca(arv, "TWICE"));
 }
