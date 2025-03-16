@@ -60,6 +60,21 @@ void imprime_dicionario(arv_tst raiz){
     imprime_dicionario_aux(raiz, aux, aux);
 }
 
+int busca (arv_tst raiz, char *str){
+    if(*str){
+        if(raiz != NULL){
+            if(raiz->letra == *str){
+                if(*(str+1) == '\0' && raiz->valor != -1)
+                    return raiz->valor;
+                return busca(raiz->igual, str+1);
+            }
+            if(*str < raiz->letra) return busca(raiz->menor, str);
+            if(*str > raiz->letra) return busca(raiz->maior, str);
+        }
+    }
+    return -1;
+}
+
 int main(){
     arv_tst raiz = NULL;
 
@@ -74,8 +89,10 @@ int main(){
     insere(&raiz, "CHAEYOUNG", 29);
     insere(&raiz, "TZUYU", 25);
 
-    imprime_dicionario(raiz);
+    //imprime_dicionario(raiz);
     printf("\n");
+
+    printf("valor da string TWICE eh %d\n", busca(raiz, "TWICE"));
 
     return 0;
 }
